@@ -1,0 +1,233 @@
+
+.concierge__log {
+  min-height: 7rem;
+  max-height: 16rem;
+  overflow-y: auto;
+  margin-bottom: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  position: relative;
+  z-index: 1;
+  padding: var(--space-2);
+  background: color-mix(in srgb, var(--color-ink) 55%, transparent);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+}
+
+.concierge__msg {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-small);
+  max-width: 95%;
+  line-height: 1.55;
+}
+
+.concierge__msg--user {
+  align-self: flex-end;
+  background: var(--color-deep);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-primary);
+}
+
+.concierge__msg--crew {
+  align-self: flex-start;
+  background: color-mix(in srgb, var(--color-signal) 10%, var(--color-panel));
+  border: 1px solid color-mix(in srgb, var(--color-signal) 38%, transparent);
+  color: var(--text-primary);
+}
+
+.concierge__msg--crew .msg-tag {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-signal-glow);
+  margin-bottom: var(--space-1);
+}
+
+.concierge__form {
+  position: relative;
+  z-index: 1;
+}
+
+.concierge__form textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 5.5rem;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  color: var(--text-primary);
+  background: var(--color-ink);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-3);
+  transition: border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out);
+}
+
+.concierge__form textarea:focus {
+  border-color: var(--color-brass);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-brass) 30%, transparent),
+    0 0 20px color-mix(in srgb, var(--color-brass) 10%, transparent);
+  outline: none;
+}
+
+.concierge__form textarea:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.concierge__form textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.concierge__form textarea::placeholder {
+  color: var(--color-mist-dim);
+}
+
+.concierge__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.concierge__lock {
+  margin: var(--space-4) 0 0;
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-danger) 12%, var(--color-panel));
+  border: 1px solid color-mix(in srgb, var(--color-danger) 45%, transparent);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--fs-small);
+  position: relative;
+  z-index: 1;
+}
+
+.concierge__lock a {
+  color: var(--color-keel);
+  font-weight: 600;
+}
+
+.concierge__disclaimer {
+  margin: var(--space-4) 0 0;
+  font-size: var(--fs-label);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  color: var(--color-mist-dim);
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Contact — monumental close ─── */
+.section--contact {
+  padding-top: clamp(6rem, 14vw, 9rem);
+  padding-bottom: clamp(6rem, 14vw, 9rem);
+  text-align: left;
+}
+
+.contact__title {
+  font-size: var(--fs-display-sm);
+  max-width: 14ch;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: var(--color-foam);
+  margin-bottom: var(--space-6);
+}
+
+.contact__lede {
+  margin-bottom: var(--space-8);
+  max-width: 28rem;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+/* ─── Footer ─── */
+.site-footer {
+  padding: var(--space-8) var(--section-pad-x) var(--space-9);
+  background: var(--bg-page);
+  border-top: 1px solid var(--border-hairline);
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.footer__brand {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.footer__wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: -0.03em;
+  color: var(--color-keel);
+}
+
+.footer__note {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--color-mist-dim);
+}
+
+.footer__top {
+  font-size: var(--fs-small);
+  text-decoration: none;
+  color: var(--text-muted);
+  min-height: var(--tap-min);
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  letter-spacing: 0.02em;
+}
+
+.footer__top:hover {
+  color: var(--color-brass);
+}
+
+/* ─── Responsive tight ─── */
+@media (max-width: 374px) {
+  .hero__actions,
+  .contact-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section--hero {
+    min-height: min(94vh, 62rem);
+  }
+
+  .keel-stage {
+    width: min(100%, 30rem);
+  }
+}
+
+/* Concierge empty-submit hint (production) */
+.concierge__hint {
+  margin: 0 0 var(--space-3);
+  font-size: var(--fs-small);
+  color: var(--color-danger);
+  position: relative;
+  z-index: 1;
+}
