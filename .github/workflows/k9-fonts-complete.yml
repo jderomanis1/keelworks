@@ -1,0 +1,65 @@
+name: k9-fonts-complete
+on:
+  push:
+    paths:
+      - ".github/workflows/k9-fonts-complete.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Fontsource woff2 and write b64 parts
+        run: |
+          python3 <<'EOF'
+          import base64, os, urllib.request
+          base = "https://cdn.jsdelivr.net/npm/@fontsource"
+          # (package, filename_stem, split?)
+          fonts = [
+            ("fraunces", "fraunces-latin-500-normal", True),
+            ("fraunces", "fraunces-latin-600-normal", True),
+            ("fraunces", "fraunces-latin-ext-500-normal", True),
+            ("fraunces", "fraunces-latin-ext-600-normal", True),
+            ("ibm-plex-mono", "ibm-plex-mono-latin-400-normal", True),
+            ("ibm-plex-mono", "ibm-plex-mono-latin-500-normal", True),
+            ("ibm-plex-mono", "ibm-plex-mono-latin-ext-400-normal", False),
+            ("ibm-plex-mono", "ibm-plex-mono-latin-ext-500-normal", True),
+            ("ibm-plex-sans", "ibm-plex-sans-latin-400-normal", True),
+            ("ibm-plex-sans", "ibm-plex-sans-latin-500-normal", True),
+            ("ibm-plex-sans", "ibm-plex-sans-latin-600-normal", True),
+            ("ibm-plex-sans", "ibm-plex-sans-latin-ext-400-normal", True),
+            ("ibm-plex-sans", "ibm-plex-sans-latin-ext-500-normal", True),
+            ("ibm-plex-sans", "ibm-plex-sans-latin-ext-600-normal", True),
+          ]
+          os.makedirs("assets/fonts", exist_ok=True)
+          for pkg, stem, split in fonts:
+            fn = f"{stem}.woff2"
+            url = f"{base}/{pkg}/files/{fn}"
+            data = urllib.request.urlopen(url, timeout=60).read()
+            b64 = base64.b64encode(data).decode("ascii")
+            if split:
+              mid = len(b64) // 2
+              open(f"assets/fonts/{stem}.woff2.b64.part1", "w").write(b64[:mid])
+              open(f"assets/fonts/{stem}.woff2.b64.part2", "w").write(b64[mid:])
+              print("split", stem, mid, len(b64) - mid)
+            else:
+              open(f"assets/fonts/{stem}.woff2.b64", "w").write(b64)
+              print("single", stem, len(b64))
+          for p in ["assets/fonts/.k9-push-probe", "assets/fonts/.k9-content-path-probe"]:
+            if os.path.exists(p):
+              os.remove(p)
+              print("removed", p)
+          EOF
+      - name: Commit fonts to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A assets/fonts
+          if git diff --cached --quiet; then
+            echo "No font changes"
+            exit 0
+          fi
+          git commit -m "chore(k9): complete font b64 parts from Fontsource CDN"
+          git push
