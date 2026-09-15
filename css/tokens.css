@@ -1,0 +1,139 @@
+/* Deromanis design tokens — production (K8). Self-host fonts via fonts.css. */
+/*
+  Deromanis design tokens — “Keel in black water” (aesthetic elevation)
+  Contrast notes (approximate WCAG ratios vs ink #070B0F unless noted):
+  - foam #F4F1EA on ink ≈ 16.8:1 (AAA body)
+  - mist #A8B0B8 on ink ≈ 8.5:1 (AA large / AAA large)
+  - brass #C9A227 on ink ≈ 8.2:1 (AA for large text; use foam ON brass for button labels)
+  - keel #E8D5A3 on ink ≈ 11.5:1 (wordmark glow / accent text)
+  - signal #3DB8A0 on ink ≈ 7.8:1 (AI chips; foam text ON signal if filled)
+  - danger #E07A5F on ink ≈ 5.4:1 (AA large; sparingly)
+  - foam on brass ≈ 1.9:1 FAIL for small text — DO NOT use foam-on-brass for body;
+    use ink (#070B0F) on brass for CTA fills (ink on brass ≈ 8.2:1 AA)
+  - brass outline CTAs: brass border + foam text on ink fill
+*/
+
+:root {
+  /* Surfaces — abyssal depth stack */
+  --color-ink: #070B0F;
+  --color-abyss: #0A1018;
+  --color-deep: #101820;
+  --color-panel: #16202A;
+  --color-panel-lift: #1A2532;
+  --color-moss-ink: #0E161C;
+
+  /* Type */
+  --color-foam: #F4F1EA;
+  --color-foam-soft: #E8E4DA;
+  --color-mist: #A8B0B8;
+  --color-mist-dim: #7A8490;
+
+  /* Accents — brass rim / keel glow */
+  --color-brass: #C9A227;
+  --color-brass-hot: #D4B03A;
+  --color-brass-dim: #8A7020;
+  --color-keel: #E8D5A3;
+  --color-keel-bright: #F2E6C4;
+  --color-signal: #3DB8A0;
+  --color-signal-glow: #4ECFB5;
+  --color-danger: #E07A5F;
+
+  /* Specular / caustic hints (very low opacity in use) */
+  --color-specular: #FFF8E7;
+  --color-caustic: #2A6B5E;
+
+  /* Semantic aliases */
+  --bg-page: var(--color-ink);
+  --bg-section: var(--color-deep);
+  --bg-elevated: var(--color-panel);
+  --bg-elevated-lift: var(--color-panel-lift);
+  --text-primary: var(--color-foam);
+  --text-muted: var(--color-mist);
+  --accent: var(--color-brass);
+  --accent-soft: var(--color-keel);
+  --ai-signal: var(--color-signal);
+  --risk: var(--color-danger);
+
+  /* Borders / hairlines (keel spine) */
+  --border-hairline: color-mix(in srgb, var(--color-brass) 38%, transparent);
+  --border-soft: color-mix(in srgb, var(--color-brass) 22%, transparent);
+  --border-strong: var(--color-brass);
+  --border-moss: color-mix(in srgb, var(--color-moss-ink) 70%, var(--color-brass));
+
+  /* Typography */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", "SF Mono", Menlo, monospace;
+
+  --fs-display: clamp(3.5rem, 9vw, 7.5rem);
+  --fs-display-sm: clamp(2.5rem, 5vw, 3.75rem);
+  --fs-h2: clamp(2rem, 4vw, 3.25rem);
+  --fs-h3: clamp(1.2rem, 2vw, 1.45rem);
+  --fs-body: clamp(1.0625rem, 1.25vw, 1.1875rem);
+  --fs-lede: clamp(1.15rem, 1.8vw, 1.4rem);
+  --fs-label: 0.6875rem;
+  --fs-small: 0.9375rem;
+
+  --lh-tight: 1.05;
+  --lh-display: 0.98;
+  --lh-body: 1.7;
+  --lh-lede: 1.55;
+  --tracking-label: 0.16em;
+  --tracking-display: -0.045em;
+  --tracking-wordmark: -0.055em;
+
+  /* Space — generous cadence */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-11: 10rem;
+
+  --tap-min: 44px;
+  --nav-h: 3.75rem;
+  --max-w: 74rem;
+  --max-w-narrow: 42rem;
+  --section-pad-y: clamp(5rem, 12vw, 7.5rem);
+  --section-pad-x: clamp(1.35rem, 4.5vw, 3rem);
+  --section-gap: clamp(5rem, 10vw, 7.5rem);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.2, 1);
+  --dur-fast: 160ms;
+  --dur-med: 320ms;
+  --dur-slow: 900ms;
+  --dur-draw: 2.4s;
+  --dur-ambient: 12s;
+
+  /* Focus */
+  --focus-ring: 2px solid var(--color-keel);
+  --focus-offset: 3px;
+
+  /* Radius — shipwright: near-square, not candy pills */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-bezel: 6px;
+
+  /* Shadows / glow */
+  --shadow-panel:
+    0 1px 0 color-mix(in srgb, var(--color-brass) 18%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-moss-ink) 80%, transparent),
+    0 28px 56px color-mix(in srgb, #000 50%, transparent);
+  --shadow-bezel:
+    inset 0 1px 0 color-mix(in srgb, var(--color-keel) 25%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, #000 40%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-brass) 55%, transparent),
+    0 24px 48px color-mix(in srgb, #000 55%, transparent),
+    0 0 40px color-mix(in srgb, var(--color-brass) 8%, transparent);
+  --glow-brass: 0 0 48px color-mix(in srgb, var(--color-brass) 28%, transparent);
+  --glow-keel: 0 0 60px color-mix(in srgb, var(--color-brass) 22%, transparent);
+  --glow-signal: 0 0 20px color-mix(in srgb, var(--color-signal) 45%, transparent);
+}
