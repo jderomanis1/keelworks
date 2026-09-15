@@ -1,7 +1,18 @@
-/* Deromanis self-hosted OFL fonts — data-URI partials (MCP binary-safe).
+/* Deromanis self-hosted OFL fonts — per-face data-URI (MCP binary-safe).
    Source: Fontsource Fraunces + IBM Plex Sans/Mono (OFL-1.1).
    Licenses: assets/fonts/OFL-*.txt
    No Google Fonts CDN. */
-@import url("fonts-fraunces.css");
-@import url("fonts-plex-sans.css");
-@import url("fonts-plex-mono.css");
+@import url("fraunces-latin-500.css");
+@import url("fraunces-latin-600.css");
+@import url("fraunces-latin-ext-500.css");
+@import url("fraunces-latin-ext-600.css");
+@import url("ibm-plex-mono-latin-400.css");
+@import url("ibm-plex-mono-latin-500.css");
+@import url("ibm-plex-mono-latin-ext-400.css");
+@import url("ibm-plex-mono-latin-ext-500.css");
+@import url("ibm-plex-sans-latin-400.css");
+@import url("ibm-plex-sans-latin-500.css");
+@import url("ibm-plex-sans-latin-600.css");
+@import url("ibm-plex-sans-latin-ext-400.css");
+@import url("ibm-plex-sans-latin-ext-500.css");
+@import url("ibm-plex-sans-latin-ext-600.css");
