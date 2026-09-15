@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--
+    BRAND: Deromanis — Legal K1d SIGN-OFF.
+    Style cue: deromanis.ai (style only until DNS verified — not claiming a live site).
+    Folder path keelworks/ is historical shared workspace — not the public brand.
+  -->
+  <meta name="description" content="Deromanis is an AI specialist crew that builds anything, with a human keel for judgment, taste, and risk." />
+  <title>Deromanis</title>
+  <link rel="stylesheet" href="css/fonts.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- SVG defs: grain noise + keel geometry filters -->
+  <svg class="svg-defs" aria-hidden="true" focusable="false" width="0" height="0">
+    <defs>
+      <filter id="grain-filter" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch" result="noise"/>
+        <feColorMatrix type="saturate" values="0" in="noise" result="mono"/>
+        <feComponentTransfer in="mono" result="grain">
+          <feFuncA type="linear" slope="0.55"/>
+        </feComponentTransfer>
+      </filter>
+      <linearGradient id="keel-spine-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#C9A227" stop-opacity="0"/>
+        <stop offset="18%" stop-color="#C9A227" stop-opacity="0.85"/>
+        <stop offset="50%" stop-color="#E8D5A3" stop-opacity="1"/>
+        <stop offset="82%" stop-color="#C9A227" stop-opacity="0.85"/>
+        <stop offset="100%" stop-color="#C9A227" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__brand" href="#hero">
+        <span class="nav__wordmark">Deromanis</span>
+        <span class="nav__style-cue" title="Style cue only until DNS verified — not claiming a live site">deromanis.ai</span>
+      </a>
+      <button type="button" class="nav__toggle" aria-expanded="false" aria-controls="nav-menu" id="nav-toggle">
+        <span class="nav__toggle-label">Menu</span>
+      </button>
+      <ul class="nav__list" id="nav-menu">
+        <li><a href="#why">Why us</a></li>
+        <li><a href="#build">What we build</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#concierge">Concierge</a></li>
+        <li><a href="#contact" class="nav__cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="section section--hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-atmosphere" aria-hidden="true">
+        <div class="hero-atmosphere__gradient"></div>
+        <div class="hero-atmosphere__caustic"></div>
+        <div class="hero-atmosphere__grain"></div>
+        <div class="hero-atmosphere__vignette"></div>
+      </div>
+
+      <div class="section__inner hero">
+        <div class="hero__copy reveal is-visible" data-reveal>
+          <p class="label label--hero">AI specialist crew · human keel</p>
+          <h1 id="hero-title" class="hero__title">
+            <span class="hero__wordmark">Deromanis</span>
+          </h1>
+          <p class="hero__style-cue" title="Style cue only until DNS verified — not claiming a live site">deromanis.ai</p>
+          <p class="hero__promise">
+            An AI specialist crew that builds anything.<br class="hero__break" />
+            You are the keel — judgment, taste, and risk stay human.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--hero" href="#contact">
+              <span class="btn__label">Contact</span>
+              <span class="btn__rule" aria-hidden="true"></span>
+            </a>
+            <a class="btn btn--ghost btn--hero" href="#how">See how</a>
+          </div>
+        </div>
+
+        <div class="hero__art" aria-hidden="true">
+          <div class="keel-stage">
+            <svg class="keel-spine" viewBox="0 0 400 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="keel-spine__wake" d="M40 168 Q120 155 200 162 T360 148" stroke="url(#keel-spine-grad)" stroke-width="1" opacity="0.35"/>
+              <path class="keel-spine__line" d="M48 160 L180 148 L220 152 L352 138" stroke="url(#keel-spine-grad)" stroke-width="2.5" stroke-linecap="square"/>
+              <path class="keel-spine__fin" d="M168 148 L188 92 L198 148 Z" fill="#C9A227" fill-opacity="0.55" stroke="#E8D5A3" stroke-width="0.75"/>
+              <line class="keel-spine__specular" x1="52" y1="158" x2="348" y2="136" stroke="#FFF8E7" stroke-width="0.5" opacity="0.4"/>
+              <rect class="keel-node" x="248" y="72" width="8" height="8" stroke="#A8B0B8" stroke-width="1" fill="none"/>
+              <rect class="keel-node" x="272" y="56" width="8" height="8" stroke="#A8B0B8" stroke-width="1" fill="none"/>
+              <rect class="keel-node" x="296" y="68" width="8" height="8" stroke="#A8B0B8" stroke-width="1" fill="none"/>
+              <rect class="keel-node keel-node--signal" x="320" y="48" width="8" height="8" stroke="#3DB8A0" stroke-width="1.25" fill="rgba(61,184,160,0.35)"/>
+              <line x1="256" y1="80" x2="320" y2="52" stroke="#3DB8A0" stroke-width="0.5" opacity="0.35" stroke-dasharray="2 4"/>
+            </svg>
+            <div class="keel-dew" id="keel-dew"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="why" aria-labelledby="why-title">
+      <div class="section__inner">
+        <header class="section-head reveal" data-reveal>
+          <p class="label">Why us</p>
+          <h2 id="why-title">The human is the keel</h2>
+          <p class="lede">
+            Crews of specialist models draft, wire, and ship. You hold the line on what ships —
+            what feels right, what is too sharp, and what must never leave dry dock.
+          </p>
+        </header>
+        <ul class="gate-rows">
+          <li class="gate-row reveal" data-reveal>
+            <span class="gate-row__index" aria-hidden="true">01</span>
+            <div class="gate-row__rule" aria-hidden="true"></div>
+            <div class="gate-row__body">
+              <h3>Judgment</h3>
+              <p>Scope, priority, and “good enough” calls stay with you. The crew executes within the frame you set.</p>
+            </div>
+          </li>
+          <li class="gate-row reveal" data-reveal>
+            <span class="gate-row__index" aria-hidden="true">02</span>
+            <div class="gate-row__rule" aria-hidden="true"></div>
+            <div class="gate-row__body">
+              <h3>Taste</h3>
+              <p>Brand voice, visual spine, and product feel are human gates — not average-out prompts.</p>
+            </div>
+          </li>
+          <li class="gate-row reveal" data-reveal>
+            <span class="gate-row__index" aria-hidden="true">03</span>
+            <div class="gate-row__rule" aria-hidden="true"></div>
+            <div class="gate-row__body">
+              <h3>Risk</h3>
+              <p>Security, compliance, and reputational edges get a human hand on the tiller before release.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="build" aria-labelledby="build-title">
+      <div class="section__inner">
+        <header class="section-head reveal" data-reveal>
+          <p class="label">What we build</p>
+          <h2 id="build-title">Clear outcomes, not decks</h2>
+          <p class="lede">If it has a finish line, the crew can take it. Here is the water we know.</p>
+        </header>
+        <ul class="build-list">
+          <li class="build-item reveal" data-reveal>
+            <span class="build-item__index" aria-hidden="true">I</span>
+            <div>
+              <div class="build-item__meta">
+                <span class="chip chip--signal">Crew</span>
+                <h3>Sites</h3>
+              </div>
+              <p>Marketing pages, docs hubs, and microsites with a spine you can feel in the scroll.</p>
+            </div>
+          </li>
+          <li class="build-item reveal" data-reveal>
+            <span class="build-item__index" aria-hidden="true">II</span>
+            <div>
+              <div class="build-item__meta">
+                <span class="chip chip--signal">Crew</span>
+                <h3>Apps</h3>
+              </div>
+              <p>Web and internal tools — forms that work, flows that finish, interfaces that stay quiet.</p>
+            </div>
+          </li>
+          <li class="build-item reveal" data-reveal>
+            <span class="build-item__index" aria-hidden="true">III</span>
+            <div>
+              <div class="build-item__meta">
+                <span class="chip chip--signal">Crew</span>
+                <h3>Games</h3>
+              </div>
+              <p>Prototypes and playable slices where rules, feel, and loop clarity matter more than polish theater.</p>
+            </div>
+          </li>
+          <li class="build-item reveal" data-reveal>
+            <span class="build-item__index" aria-hidden="true">IV</span>
+            <div>
+              <div class="build-item__meta">
+                <span class="chip chip--signal">Crew</span>
+                <h3>Ops tools</h3>
+              </div>
+              <p>Dashboards, checklists, and glue scripts that cut friction for the people who run the shop.</p>
+            </div>
+          </li>
+          <li class="build-item build-item--featured reveal" data-reveal>
+            <span class="build-item__index" aria-hidden="true">V</span>
+            <div>
+              <div class="build-item__meta">
+                <span class="chip chip--signal">Crew</span>
+                <h3>Anything with a clear outcome</h3>
+              </div>
+              <p>Name the result. Gate judgment, taste, and risk. We build toward the dock — not endless discovery.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="how" aria-labelledby="how-title">
+      <div class="section__inner">
+        <header class="section-head reveal" data-reveal>
+          <p class="label">How it works</p>
+          <h2 id="how-title">Brief → crew → gates → ship</h2>
+        </header>
+        <ol class="steps">
+          <li class="step reveal" data-reveal>
+            <span class="step__num" aria-hidden="true">01</span>
+            <div class="step__rail" aria-hidden="true"></div>
+            <div class="step__body">
+              <h3>Brief</h3>
+              <p>You state the outcome, constraints, and non-negotiables. Short is fine; vague is not.</p>
+            </div>
+          </li>
+          <li class="step reveal" data-reveal>
+            <span class="step__num" aria-hidden="true">02</span>
+            <div class="step__rail" aria-hidden="true"></div>
+            <div class="step__body">
+              <h3>Crew</h3>
+              <p>Specialist AI hands draft, implement, and iterate inside the brief — fast, parallel, accountable to the frame.</p>
+            </div>
+          </li>
+          <li class="step reveal" data-reveal>
+            <span class="step__num" aria-hidden="true">03</span>
+            <div class="step__rail" aria-hidden="true"></div>
+            <div class="step__body">
+              <h3>Human gates</h3>
+              <p>You review judgment, taste, and risk. Green light, redirect, or kill. The keel decides.</p>
+            </div>
+          </li>
+          <li class="step reveal" data-reveal>
+            <span class="step__num" aria-hidden="true">04</span>
+            <div class="step__rail" aria-hidden="true"></div>
+            <div class="step__body">
+              <h3>Ship</h3>
+              <p>We deliver the artifact — site, app, tool, or slice — ready to use, not a slide about using it.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="concierge" aria-labelledby="concierge-title">
+      <div class="section__inner">
+        <header class="section-head reveal" data-reveal>
+          <p class="label">Concierge</p>
+          <h2 id="concierge-title">Ask the crew</h2>
+          <p class="lede">
+            Limited crew instrument — local answers, five asks max, then we route you to a human.
+            Safeguards always point to contact.
+          </p>
+        </header>
+        <div class="concierge reveal" id="concierge-panel" data-reveal>
+          <div class="concierge__bezel">
+            <div class="concierge__meter" aria-live="polite">
+              <div class="concierge__meter-left">
+                <span class="chip chip--signal chip--pulse">Instrument</span>
+                <span class="concierge__instrument-label">Crew instrument</span>
+              </div>
+              <div class="concierge__meter-right">
+                <span class="concierge__count" id="ask-count">0 / 5 asks</span>
+                <div class="concierge__bar" aria-hidden="true">
+                  <span class="concierge__bar-fill" id="ask-bar" style="width: 0%"></span>
+                </div>
+              </div>
+            </div>
+            <div class="concierge__log" id="concierge-log" role="log" aria-relevant="additions" aria-live="polite"></div>
+            <form class="concierge__form" id="concierge-form" autocomplete="off">
+              <label class="visually-hidden" for="concierge-input">Your question</label>
+              <textarea
+                id="concierge-input"
+                name="ask"
+                rows="3"
+                maxlength="500"
+                placeholder="Ask something short — what you need built, a constraint, a taste call…"
+              ></textarea>
+              <p class="concierge__hint" id="concierge-hint" hidden>Type a short question.</p>
+              <div class="concierge__actions">
+                <button type="submit" class="btn btn--primary" id="concierge-send">Send</button>
+              </div>
+            </form>
+            <p class="concierge__lock" id="concierge-lock" hidden>
+              Ask limit reached —
+              <a href="tel:6025685508">text us</a>
+              or <a href="mailto:joe@deromanis.com">Email us</a>
+            </p>
+            <p class="concierge__disclaimer">
+              Limited to five asks. Not legal, medical, or financial advice. For pricing and scope, text or email us.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt section--contact" id="contact" aria-labelledby="contact-title">
+      <div class="section__inner contact reveal" data-reveal>
+        <p class="label">Contact</p>
+        <h2 id="contact-title" class="contact__title">Prefer judgment first?<br />Start here.</h2>
+        <p class="lede contact__lede">Talk to a human before the crew spins up. Text or email — both land with Joe.</p>
+        <div class="contact-actions">
+          <a class="btn btn--primary btn--lg btn--monument" href="tel:6025685508">Text 602.568.5508</a>
+          <a class="btn btn--ghost btn--lg" href="mailto:joe@deromanis.com">Email us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="section__inner footer__inner">
+      <p class="footer__brand">
+        <span class="footer__wordmark">Deromanis</span>
+        <span class="footer__style-cue" title="Style cue only until DNS verified — not claiming a live site">deromanis.ai</span>
+      </p>
+      <p class="footer__note">AI specialist crew · human keel. Brand: Deromanis.</p>
+      <a class="footer__top" href="#hero">Back to top</a>
+    </div>
+  </footer>
+
+  <script src="js/nav.js" defer></script>
+  <script src="js/motion.js" defer></script>
+  <script src="js/concierge.js" defer></script>
+</body>
+</html>

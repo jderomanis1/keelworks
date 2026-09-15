@@ -26,21 +26,48 @@ jobs:
           set -euo pipefail
           rm -rf _site
           mkdir -p _site
-          if [ -f index.html ]; then
-            cp index.html _site/
-            [ -d css ] && mkdir -p _site/css && cp -r css/. _site/css/
-            [ -d js ] && mkdir -p _site/js && cp -r js/. _site/js/
-            [ -d assets ] && mkdir -p _site/assets && cp -r assets/. _site/assets/
-          elif [ -d prototype ]; then
-            cp -r prototype/. _site/
-          else
-            printf '%s\n' '<!DOCTYPE html><title>Keelworks</title><p>Deploy pending</p>' > _site/index.html
-          fi
+          # Public allowlist: index.html, css/, js/, assets/ (incl. fonts).
+          # Never stage prototype/, SPEC.md, STATE.md, POSITIONING, legal, ux docs.
+          test -f index.html
+          cp index.html _site/
+          mkdir -p _site/css _site/js _site/assets
+          cp -r css/. _site/css/
+          cp -r js/. _site/js/
+          if [ -d assets ]; then cp -r assets/. _site/assets/; fi
+
+          # Decode self-hosted fonts from text .b64 (MCP cannot push binary woff2 intact)
+          mkdir -p _site/assets/fonts
+          # Full single-file .woff2.b64
+          for b64 in assets/fonts/*.woff2.b64; do
+            [ -f "$b64" ] || continue
+            base=$(basename "$b64" .b64)
+            base64 -d "$b64" > "_site/assets/fonts/$base"
+          done
+          # Split parts: name.woff2.b64.part1 + .part2 (concat then decode)
+          for part1 in assets/fonts/*.woff2.b64.part1; do
+            [ -f "$part1" ] || continue
+            stem=${part1%.part1}
+            part2="${stem}.part2"
+            base=$(basename "$stem" .b64)
+            cat "$part1" "$part2" | base64 -d > "_site/assets/fonts/$base"
+          done
+          # Also copy OFL txt / README
+          cp -f assets/fonts/*.txt _site/assets/fonts/ 2>/dev/null || true
+          cp -f assets/fonts/README.md _site/assets/fonts/ 2>/dev/null || true
+          # Drop text b64 from artifact once decoded
+          rm -f _site/assets/fonts/*.woff2.b64 _site/assets/fonts/*.woff2.b64.part1 _site/assets/fonts/*.woff2.b64.part2 2>/dev/null || true
           test -f _site/index.html
-          if [ -e _site/SPEC.md ] || [ -e _site/STATE.md ]; then
+          test -d _site/css
+          test -d _site/js
+          if [ -d assets/fonts ]; then
+            test -d _site/assets/fonts
+          fi
+          if [ -e _site/prototype ] || [ -e _site/SPEC.md ] || [ -e _site/STATE.md ] || [ -e _site/POSITIONING.md ] || [ -e _site/SA-DECISION.md ]; then
             echo "Refuse: non-public path leaked into _site" >&2
             exit 1
           fi
+          rm -f _site/SPEC.md _site/STATE.md _site/POSITIONING.md _site/SA-DECISION.md _site/SCOUT.md _site/README.md 2>/dev/null || true
+          rm -rf _site/prototype _site/ux _site/screenshots 2>/dev/null || true
       - uses: actions/configure-pages@v5
         with:
           enablement: true

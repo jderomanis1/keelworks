@@ -1,0 +1,310 @@
+
+.hero-atmosphere__gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 72% 38%, color-mix(in srgb, var(--color-brass) 9%, transparent), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 18% 70%, color-mix(in srgb, var(--color-caustic) 14%, transparent), transparent 60%),
+    radial-gradient(ellipse 100% 80% at 50% 100%, color-mix(in srgb, var(--color-abyss) 90%, transparent), transparent 50%),
+    linear-gradient(165deg, var(--color-ink) 0%, var(--color-abyss) 42%, var(--color-deep) 100%);
+}
+
+.hero-atmosphere__caustic {
+  position: absolute;
+  inset: 20% -10% -20% 30%;
+  background:
+    radial-gradient(ellipse 30% 18% at 40% 50%, color-mix(in srgb, var(--color-signal) 6%, transparent), transparent 70%),
+    radial-gradient(ellipse 22% 14% at 65% 40%, color-mix(in srgb, var(--color-caustic) 10%, transparent), transparent 70%),
+    radial-gradient(ellipse 18% 12% at 55% 65%, color-mix(in srgb, var(--color-brass) 5%, transparent), transparent 70%);
+  opacity: 0.7;
+  animation: caustic-drift var(--dur-ambient) var(--ease-in-out) infinite alternate;
+}
+
+.hero-atmosphere__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  filter: url(#grain-filter);
+  background: #888;
+}
+
+.hero-atmosphere__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 75% 70% at 50% 45%, transparent 40%, color-mix(in srgb, var(--color-ink) 75%, transparent) 100%);
+}
+
+@keyframes caustic-drift {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(-2%, 3%) scale(1.04); }
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: var(--space-6);
+  }
+}
+
+.hero__copy {
+  position: relative;
+  z-index: 2;
+  max-width: 36rem;
+}
+
+.hero__title {
+  margin: 0;
+  max-width: none;
+}
+
+.hero__wordmark {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-display);
+  font-optical-sizing: auto;
+  letter-spacing: var(--tracking-wordmark);
+  line-height: var(--lh-display);
+  color: var(--color-keel);
+  text-shadow:
+    0 0 80px color-mix(in srgb, var(--color-brass) 35%, transparent),
+    0 0 2px color-mix(in srgb, var(--color-keel-bright) 40%, transparent);
+}
+
+.hero__promise {
+  max-width: 32rem;
+  font-size: var(--fs-lede);
+  line-height: var(--lh-lede);
+  color: var(--color-foam-soft);
+  margin: 0 0 var(--space-8);
+  text-wrap: pretty;
+}
+
+.hero__break {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .hero__break {
+    display: inline;
+  }
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+}
+
+.hero__art {
+  position: relative;
+  z-index: 1;
+  min-height: 14rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 900px) {
+  .hero__art {
+    min-height: 22rem;
+    justify-content: flex-end;
+  }
+}
+
+.keel-stage {
+  position: relative;
+  width: min(100%, 26rem);
+  aspect-ratio: 400 / 280;
+}
+
+.keel-spine {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 24px color-mix(in srgb, var(--color-brass) 30%, transparent));
+}
+
+.keel-spine__line {
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: keel-draw var(--dur-draw) var(--ease-out) 0.35s forwards;
+}
+
+.keel-spine__wake {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: keel-draw calc(var(--dur-draw) * 1.15) var(--ease-out) 0.55s forwards;
+}
+
+.keel-spine__fin {
+  opacity: 0;
+  animation: keel-fade-in 0.8s var(--ease-out) 1.6s forwards;
+}
+
+.keel-spine__specular {
+  opacity: 0;
+  animation: keel-fade-in 1s var(--ease-out) 1.9s forwards;
+}
+
+.keel-node {
+  opacity: 0;
+  animation: keel-fade-in 0.6s var(--ease-out) forwards;
+}
+
+.keel-node:nth-child(5) { animation-delay: 2.0s; }
+.keel-node:nth-child(6) { animation-delay: 2.15s; }
+.keel-node:nth-child(7) { animation-delay: 2.3s; }
+.keel-node:nth-child(8) { animation-delay: 2.45s; }
+
+.keel-node--signal {
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-signal) 60%, transparent));
+}
+
+@keyframes keel-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes keel-fade-in {
+  to { opacity: 1; }
+}
+
+.keel-dew {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.keel-dew__particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--color-keel) 55%, transparent);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--color-brass) 40%, transparent);
+  animation: dew-float linear infinite;
+  opacity: 0;
+}
+
+@keyframes dew-float {
+  0% { transform: translateY(8px); opacity: 0; }
+  15% { opacity: 0.7; }
+  85% { opacity: 0.35; }
+  100% { transform: translateY(-40px); opacity: 0; }
+}
+
+/* ─── Buttons ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--tap-min);
+  min-width: var(--tap-min);
+  padding: 0.7rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out);
+}
+
+.btn--primary {
+  background: var(--color-brass);
+  color: var(--color-ink);
+  border-color: var(--color-brass);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-specular) 35%, transparent),
+    0 0 24px color-mix(in srgb, var(--color-brass) 18%, transparent);
+}
+
+.btn--primary:hover {
+  background: var(--color-keel);
+  border-color: var(--color-keel);
+  color: var(--color-ink);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-specular) 45%, transparent),
+    0 0 32px color-mix(in srgb, var(--color-brass) 28%, transparent);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-hairline);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-brass);
+  color: var(--color-keel);
+  box-shadow: inset 0 0 20px color-mix(in srgb, var(--color-brass) 8%, transparent);
+}
+
+.btn--lg {
+  padding: 0.95rem 1.85rem;
+  font-size: 1.05rem;
+}
+
+.btn--hero {
+  padding: 0.8rem 1.65rem;
+  font-size: 0.95rem;
+}
+
+.btn--monument {
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-specular) 40%, transparent),
+    0 0 40px color-mix(in srgb, var(--color-brass) 22%, transparent);
+}
+
+.btn__rule {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1px;
+  background: var(--color-ink);
+  opacity: 0.45;
+  margin-left: var(--space-1);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ─── Why — numbered gate rows (not card grid) ─── */
+.gate-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.gate-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-5) var(--space-6);
+  padding: var(--space-7) 0;
+  border-bottom: 1px solid var(--border-soft);
+  align-items: start;
+}
