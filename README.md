@@ -16,3 +16,5 @@ Contact: Text `602.568.5508` · Email us (mailto only; address not shown in page
 - `assets/` (including self-hosted OFL fonts)
 
 Do not deploy: `prototype/`, `SPEC.md`, `STATE.md`, positioning/legal/ux docs.
+
+<!-- K10b: trigger Pages after font b64 complete @ 7c3df44 -->
